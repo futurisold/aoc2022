@@ -5,7 +5,7 @@ def load_data(path: str):
     return lines
 
 
-def simulation(data: list[list[str]]):
+def simulation(data: list[list[str]], floor: bool):
     # render scan
     rightlb = min(map(lambda x: min([int(p.split(',')[0]) for p in x]), data))
     rightrb = max(map(lambda x: max([int(p.split(',')[0]) for p in x]), data))
@@ -13,8 +13,19 @@ def simulation(data: list[list[str]]):
     downbb = max(map(lambda x: max([int(p.split(',')[1]) for p in x]), data))
     rightm = {x: i for i, x in enumerate(range(rightlb, rightrb+1))}
     downm = {x: x for x in range(downbb+1) if x >= downtb}
-    scan = [['.' for _ in range(len(rightm))]
-            for _ in range(len(downm)+downtb)]
+    if floor:
+        # make a floor big enough
+        scan = [['.' for _ in range(len(rightm))]*10 for _ in range(len(downm)+downtb+2)]
+        scan[-1] = ['#' for _ in scan[-1]]
+        # try to center the source
+        rightm[500] = len(rightm)*10 // 2
+        for k in rightm:
+            if k != 500:
+                off = 500 - k
+                if off > 0: rightm[k] = rightm[500] - off
+                else: rightm[k] = rightm[500] + (-off)
+    else:
+        scan = [['.' for _ in range(len(rightm))] for _ in range(len(downm)+downtb)]
     src = (0, rightm[500])
     scan[src[0]][src[1]] = '+'
 
@@ -39,48 +50,41 @@ def simulation(data: list[list[str]]):
     # render sand
     def neighbourhood(p: tuple[int, int], grid: list[list[str]]):
         i, j = p
-        if any([i < 0, i >= len(grid), j < 0, j >= len(grid)]): return
-        if grid[i+1][j] == '#':
-            if grid[i+1][j-1] == '#':
-                if grid[i+1][j+1] == '#':
-                    grid[i][j] = 'o'
-                    return (i, j)
-                elif grid[i+1][j+1] == '.':
-                    return neighbourhood((i+1, j+1), grid)
-            elif grid[i+1][j-1] == '.':
-                return neighbourhood((i+1, j-1), grid)
-        elif grid[i+1][j] == 'o':
-            if grid[i+1][j-1] == 'o' or grid[i+1][j-1] == '#':
-                if grid[i+1][j+1] == 'o' or grid[i+1][j+1] == '#':
-                    grid[i][j] = 'o'
-                    return (i, j)
-                elif grid[i+1][j+1] == '.':
-                    return neighbourhood((i+1, j+1), grid)
-            elif grid[i+1][j-1] == '.':
-                return neighbourhood((i+1, j-1), grid)
-        else:
-            return neighbourhood((i+1, j), grid)
+        while i+1 < len(grid) and j+1 < len(grid[0]):
+            if grid[i+1][j] == 'o' or grid[i+1][j] == '#':
+                if grid[i+1][j-1] == 'o' or grid[i+1][j-1] == '#':
+                    if grid[i+1][j+1] == 'o' or grid[i+1][j+1] == '#':
+                        grid[i][j] = 'o'
+                        return (i, j)
+                    else:
+                        return neighbourhood((i+1, j+1), grid)
+                else:
+                    return neighbourhood((i+1, j-1), grid)
+            else:
+                return neighbourhood((i+1, j), grid)
 
-    i = 1
-    count = 0
+    i = 0 if floor else 1
     rest = False
     cells = set()
     while not rest:
         cell = neighbourhood((src[0]+i, src[1]), scan)
-        if cell in cells or cell is None: rest = True
+        if cell in cells or cell is None or cell == -1: rest = True
         else: cells.add(cell)
 
-    for row in scan: print(''.join(row))
+    if not floor:
+        for row in scan: print(''.join(row))
 
     return len(cells)
 
 
 if __name__ == '__main__':
     assert_data = load_data('./assert.txt')
-    assert simulation(assert_data) == 24
+    assert simulation(assert_data, floor=False) == 24
+    assert simulation(assert_data, floor=True) == 93
 
     input_data = load_data('./input.txt')
     # part 1
-    print(simulation(input_data))
+    print(simulation(input_data, floor=False))
     # part 2
+    print(simulation(input_data, floor=True))
 
