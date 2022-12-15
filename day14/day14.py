@@ -39,19 +39,21 @@ def simulation(data: list[list[str]]):
     # render sand
     def neighbourhood(p: tuple[int, int], grid: list[list[str]]):
         i, j = p
+        if any([i < 0, i >= len(grid), j < 0, j >= len(grid)]): return
         if grid[i+1][j] == '#':
             if grid[i+1][j-1] == '#':
                 if grid[i+1][j+1] == '#':
                     grid[i][j] = 'o'
                     return (i, j)
-                elif grid[i+1][j+1] == 'o':
+                elif grid[i+1][j+1] == '.':
                     return neighbourhood((i+1, j+1), grid)
-            elif grid[i+1][j-1] == 'o':
+            elif grid[i+1][j-1] == '.':
                 return neighbourhood((i+1, j-1), grid)
         elif grid[i+1][j] == 'o':
-            if grid[i+1][j-1] == 'o':
-                if grid[i+1][j+1] == 'o':
+            if grid[i+1][j-1] == 'o' or grid[i+1][j-1] == '#':
+                if grid[i+1][j+1] == 'o' or grid[i+1][j+1] == '#':
                     grid[i][j] = 'o'
+                    return (i, j)
                 elif grid[i+1][j+1] == '.':
                     return neighbourhood((i+1, j+1), grid)
             elif grid[i+1][j-1] == '.':
@@ -59,35 +61,26 @@ def simulation(data: list[list[str]]):
         else:
             return neighbourhood((i+1, j), grid)
 
+    i = 1
+    count = 0
+    rest = False
+    cells = set()
+    while not rest:
+        cell = neighbourhood((src[0]+i, src[1]), scan)
+        if cell in cells or cell is None: rest = True
+        else: cells.add(cell)
 
-
-    i = 2
-    # rest = False
-    # cells = set()
-    # while not rest:
-    #     cell = neighbourhood((src[0]+i, src[1]), scan)
-    #     if cell in cells: rest = True
-    #     else: cells.add(cell)
-    #
-    cell = neighbourhood((src[0]+i, src[1]), scan)
-    cell = neighbourhood((src[0]+i, src[1]), scan)
-    cell = neighbourhood((src[0]+i, src[1]), scan)
-    cell = neighbourhood((src[0]+i, src[1]), scan)
-    cell = neighbourhood((src[0]+i, src[1]), scan)
-    cell = neighbourhood((src[0]+i, src[1]), scan)
     for row in scan: print(''.join(row))
 
-
-
-
+    return len(cells)
 
 
 if __name__ == '__main__':
     assert_data = load_data('./assert.txt')
-    simulation(assert_data)
+    assert simulation(assert_data) == 24
 
     input_data = load_data('./input.txt')
     # part 1
-    # simulation(input_data)
+    print(simulation(input_data))
     # part 2
 
