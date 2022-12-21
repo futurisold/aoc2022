@@ -1,9 +1,7 @@
 import re
-from collections import Counter, deque
 from dataclasses import dataclass
 from itertools import combinations
 from shapely.geometry import Polygon
-from shapely import get_dimensions
 
 
 def load_data(path: str):
@@ -39,16 +37,11 @@ class Line:
         self.xmax = max(self.head.x, self.tail.x) + 1
         self.ymax = max(self.head.y, self.tail.y) + 1
 
-    def intersect(self, other): return self.points.intersection(other.points)
-
     @property
     def xrange(self): return range(self.xmin, self.xmax)
 
     @property
     def yrange(self): return range(self.ymin, self.ymax)
-
-    @property
-    def points(self): return set(zip(self.xrange, self.yrange))
 
 
 def coverage_at_row(sensor: Point, dist: int, row: int):
