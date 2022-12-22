@@ -1,7 +1,9 @@
 import re
-from itertools import permutations
-import networkx as nx
+from collections import defaultdict
+from itertools import combinations
+
 import matplotlib.pyplot as plt
+import networkx as nx
 
 
 Scan = list[tuple[list[str], int]]
@@ -18,8 +20,7 @@ def load_data(path: str):
     return list(zip(valves, flows))
 
 
-
-def max_utility_path(scan: Scan):
+def get_paths(scan: Scan, time: int, draw: bool):
     g = nx.Graph()
     for valves, rate in scan:
         v, tunnels = valves[0], valves[1:]
@@ -27,33 +28,46 @@ def max_utility_path(scan: Scan):
         for t in tunnels:
             g.add_edge(v, t)
 
-    def _utility(path: tuple[str]):
-        t = 30
-        util = 0
-        if path[0] != 'AA': return 0
-        for curv, nxv in zip(path[:-1], path[1:]):
-            t -= (dists[curv][nxv] + 1)
-            if t < 2: break
-            util += (g.nodes[nxv]['rate'] * t)
-        return util
+    def _utility(valves, v_cur='AA', t=time, util={}):
+        for v_nx in valves:
+            t_nx = t - dists[v_cur][v_nx] - 1
+            if t_nx < 1: continue
+            yield from _utility(valves - {v_nx}, v_nx, t_nx, util | {v_nx: t_nx * g.nodes[v_nx]['rate']})
+        yield util
 
     dists = nx.floyd_warshall(g)
-    valves = set(filter(lambda x: g.nodes[x]['rate'], g.nodes)) | {'AA'}
-    # print(max(map(_utility, filter(lambda x: x[0] == 'AA', permutations(valves, len(valves))))))
-    print(max(map(_utility, permutations(valves, len(valves)))))
-    # print(len(list(paths)))
-    # print(max(map(_utility, paths)))
+    valves = set(filter(lambda x: g.nodes[x]['rate'], g.nodes))
 
-    # nx.draw(g, with_labels=True)
-    # plt.show()
+    if draw:
+        nx.draw(g, with_labels=True)
+        plt.show()
+    else: return _utility(valves)
+
+
+def get_max_utility(scan: Scan, time: int, help: bool, draw: bool = False):
+    if help:
+        utilities = defaultdict(int)
+        for path in get_paths(scan, time, draw):
+            util = sum(path.values())
+            key = frozenset(path.keys())
+            if util > utilities[key]: utilities[key] = util
+
+        return int(max(u1 + u2
+                       for (p1, u1), (p2, u2) in combinations(utilities.items(), 2)
+                       if not p1 & p2))
+
+    return int(max(sum(path.values())
+                   for path in get_paths(scan, time, draw)))
 
 
 if __name__ == '__main__':
     assert_data = load_data('./assert.txt')
-    max_utility_path(assert_data)
+    assert get_max_utility(assert_data, time=30, help=False) == 1651
+    assert get_max_utility(assert_data, time=26, help=True) == 1707
 
     input_data = load_data('./input.txt')
     # part 1
-    max_utility_path(input_data)
+    print(get_max_utility(input_data, time=30, help=False))
     # part 2
+    print(get_max_utility(input_data, time=26, help=True))
 
