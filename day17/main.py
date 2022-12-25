@@ -76,9 +76,9 @@ def simulate_falling(jet_pattern: str, cycles: int, trust_issues: bool):
                 y_max = max([p.y for p in baseline])
                 cur = (i, c%5, higher_rock_formation(baseline))
                 if cur in seen and c > 2021:
-                    c_old, hrf_old = seen[cur] # when & what have we seen before
+                    c_old, y_old = seen[cur] # when & what have we seen before
                     dc = c - c_old
-                    dy = y_max - hrf_old
+                    dy = y_max - y_old
                     jump = (cycles - c) // dc # how many cycles to jump
                     hrf_y_max += jump * dy
                     c += jump * dc
