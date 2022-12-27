@@ -60,8 +60,7 @@ def find_password(data: tuple[tuple, list], fold: bool):
             if _p not in grid:
                 if fold: _p, _d = wrap_around_cube(_p, _d)
                 else: _p = wrap_around_torus(_p, _d, grid)
-            if grid[_p] == '.':
-                p, dir = _p, _d
+            if grid[_p] == '.': p, dir = _p, _d
         if turn == 'L': dir *= 1j
         elif turn == 'R': dir *= -1j
 
