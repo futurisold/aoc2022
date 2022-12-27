@@ -2,8 +2,7 @@ import re
 
 
 def load_data(path: str):
-    with open(path) as f:
-        *grid, _, path = open(path)
+    *grid, _, path = open(path)
 
     return (*map(lambda x: x.strip('\n'), grid),
             re.findall(r'(\d+)([RL]?)', path.strip('\n')))
