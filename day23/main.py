@@ -67,8 +67,8 @@ def simulation(data: list, rounds: int, freeze: bool):
                         break
 
         for old in moves:
-            [*conflict] = map(lambda x: x if x != old and moves[x] == moves[old] else None, moves)
-            if not any(conflict):
+            [*collision] = map(lambda x: x if x != old and moves[x] == moves[old] else None, moves)
+            if not any(collision):
                 grid -= {old}
                 grid |= {moves[old]}
 
