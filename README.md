@@ -1,47 +1,70 @@
 # Journey
+<p align="center">
 <img src="./calendar.png" style="width:50%;height:50%;">
+</p>
 
-The journey began with a task so mundane \
-Calorie counting, a chore that's so plain\
-But it set the tone for the days to come \
-Full of challenges, but also some fun
+<p align="center">
+The journey began with a task so mundane <br>
+Calorie counting, a chore that's so plain <br>
+But it set the tone for the days to come  <br>
+Full of challenges, but also some fun <br>
+</p>
 
-Rock Paper Scissors, a game we played
-A way to pass the time, it never fades
-But it was just the start of our toil
-Rucksack reorganization, no time to boil
+<p align="center">
+Rock Paper Scissors, a game we played <br>
+A way to pass the time, it never fades <br>
+But it was just the start of our toil <br>
+Rucksack reorganization, no time to boil <br>
+</p>
 
-Camp cleanup was next on the list
-A never-ending task, we couldn't resist
-Supply stacks, a task that's so true
-Tuning trouble, a challenge we knew
+<p align="center">
+Camp cleanup was next on the list <br>
+A never-ending task, we couldn't resist <br>
+Supply stacks, a task that's so true <br>
+Tuning trouble, a challenge we knew <br>
+</p>
 
-No space left on device, a frustration to say
-But we persevered and found a way
-Treetop tree house, a dream come true
-Rope bridge, a test of courage and poise
+<p align="center">
+No space left on device, a frustration to say <br>
+But we persevered and found a way <br>
+Treetop tree house, a dream come true <br>
+Rope bridge, a test of courage and poise <br>
+</p>
 
-Cathode-ray tube, a relic of the past
-Monkey in the middle, a game that lasts
-Hill climbing algorithm, a mental feat
-Distress signal, a call for help we must meet
+<p align="center">
+Cathode-ray tube, a relic of the past <br>
+Monkey in the middle, a game that lasts <br>
+Hill climbing algorithm, a mental feat <br>
+Distress signal, a call for help we must meet <br>
+</p>
 
-Regolith reservoir, a discovery so grand
-Beacon exclusion zone, a place we must stand
-Proboscidea volcanium, a sight to behold
-Pyroclastic flow, a danger we must fold
+<p align="center">
+Regolith reservoir, a discovery so grand <br>
+Beacon exclusion zone, a place we must stand <br>
+Proboscidea volcanium, a sight to behold <br>
+Pyroclastic flow, a danger we must fold <br>
+</p>
 
-Boiling boulders, a heat we must withstand
-Not enough minerals, a loss we must understand
-Grove positioning system, a guide to the way
-Monkey math, a puzzle we must play
+<p align="center">
+Boiling boulders, a heat we must withstand <br>
+Not enough minerals, a loss we must understand <br>
+Grove positioning system, a guide to the way <br>
+Monkey math, a puzzle we must play <br>
+</p>
 
-Monkey map, a path we must find
-Unstable diffusion, a task that's unkind
-Blizzard basin, a cold we must brave
-Full of hot air, a challenge we must face
+<p align="center">
+Monkey map, a path we must find <br>
+Unstable diffusion, a task that's unkind <br>
+Blizzard basin, a cold we must brave <br>
+Full of hot air, a challenge we must face <br>
+</p>
 
-Through it all we persevered and thrived
-This journey, a memory we will always cherish and keep alive
+<p align="center">
+Through it all we persevered and thrived <br>
+This journey, a memory we will always cherish and keep alive  <br>
+</p>
 
-(ChatGPT)
+
+<p align="center">
+(_ChatGPT_)
+</p>
