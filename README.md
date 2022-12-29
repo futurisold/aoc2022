@@ -1,9 +1,9 @@
 # Journey
 ![calendar](./calendar.png)
 
-The journey began with a task so mundane
-Calorie counting, a chore that's so plain
-But it set the tone for the days to come
+The journey began with a task so mundane \
+Calorie counting, a chore that's so plain\
+But it set the tone for the days to come \
 Full of challenges, but also some fun
 
 Rock Paper Scissors, a game we played
