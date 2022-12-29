@@ -1,8 +1,8 @@
+<h1 align=center> <b>Journey</b> </h1>
+
 <p align="center">
 <img src="./calendar.png" style="width:75%;height:75%;">
 </p>
-
-<h1 align=center> <b>Journey</b> </h1>
 
 <p align="center">
 The journey began with a task so mundane <br>
@@ -65,6 +65,4 @@ Through it all we persevered and thrived <br>
 This journey, a memory we will always cherish and keep alive  <br>
 </p>
 
-<p align=center>
-(<b>ChatGPT</b>)
-</p>
+<p align=center> <b>ChatGPT</b> </p>
