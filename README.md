@@ -1,10 +1,10 @@
-<p align=center> <font size=6>
-<b>Journey</b>
-</font> </p>
-
 <p align="center">
 <img src="./calendar.png" style="width:75%;height:75%;">
 </p>
+
+<p align=center> <font size=6>
+<b>Journey</b>
+</font> </p>
 
 <p align="center">
 The journey began with a task so mundane <br>
