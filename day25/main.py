@@ -39,7 +39,7 @@ if __name__ == '__main__':
     assert_data = load_data('./assert.txt')
     assert console_input(assert_data) == '2=-1=0'
 
-    # input_data = load_data('./input.txt')
+    input_data = load_data('./input.txt')
     # part 1
-    # print(console_input(input_data))
+    print(console_input(input_data))
     # part 2
