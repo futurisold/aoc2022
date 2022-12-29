@@ -1,5 +1,5 @@
 # Journey
-![calendar](./calendar.png)
+![calendar](./calendar.png){width=50% height=50%}
 
 The journey began with a task so mundane \
 Calorie counting, a chore that's so plain\
