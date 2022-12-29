@@ -1,9 +1,9 @@
-<p align=center> <font size=6> <style>
+<p align=center> <font size=10>
 <b>Journey</b>
-</style> </font> </p>
+</font> </p>
 
 <p align="center">
-<img src="./calendar.png" style="width:50%;height:50%;">
+<img src="./calendar.png" style="width:75%;height:75%;">
 </p>
 
 <p align="center">
@@ -67,6 +67,6 @@ Through it all we persevered and thrived <br>
 This journey, a memory we will always cherish and keep alive  <br>
 </p>
 
-<p align=center> <style>
-(ChatGPT)
-</style> </p>
+<p align=center>
+(<b>ChatGPT</b>)
+</p>
